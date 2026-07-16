@@ -1,0 +1,2 @@
+# Docker Compose — FOCUS (infra locale)
+# Usage: docker compose -f infra/docker-compose.yml up -d

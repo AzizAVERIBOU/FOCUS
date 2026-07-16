@@ -1,0 +1,68 @@
+# --- OS / IDE ---
+.DS_Store
+Thumbs.db
+*.swp
+*~
+.idea/
+.vscode/
+*.user
+*.suo
+
+# --- Secrets / env ---
+.env
+.env.local
+.env.*.local
+!.env.example
+
+# --- .NET ---
+bin/
+obj/
+out/
+*.dll
+*.pdb
+*.exe
+*.cache
+project.lock.json
+artifacts/
+TestResults/
+*.nupkg
+*.snupkg
+
+# --- Kotlin / Android / KMP ---
+*.iml
+.gradle/
+local.properties
+**/build/
+captures/
+.externalNativeBuild/
+.cxx/
+*.apk
+*.aab
+*.ap_
+*.dex
+*.class
+.kotlin/
+
+# --- iOS / Xcode (KMP) ---
+xcuserdata/
+*.xcworkspace/xcuserdata/
+DerivedData/
+*.ipa
+Pods/
+.swiftpm/
+
+# --- Node (si outils front/scripts) ---
+node_modules/
+npm-debug.log*
+yarn-error.log*
+dist/
+
+# --- Docker / infra ---
+docker-data/
+*.log
+
+# --- Divers ---
+*.tmp
+*.temp
+coverage/
+.nyc_output/
