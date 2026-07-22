@@ -3,3 +3,5 @@
 Ce dossier accueillera le projet KMP.
 
 ## À faire
+
+- Initialiser le projet KMP
