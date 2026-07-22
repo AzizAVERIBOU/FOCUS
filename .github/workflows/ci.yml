@@ -1,0 +1,47 @@
+# CI minimaliste — lint (évolutif vers .NET / KMP)
+name: CI
+
+on:
+  push:
+  pull_request:
+
+concurrency:
+  group: ci-${{ github.workflow }}-${{ github.ref }}
+  cancel-in-progress: true
+
+jobs:
+  lint:
+    name: Lint
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Lint Markdown
+        uses: DavidAnson/markdownlint-cli2-action@v19
+        with:
+          globs: |
+            **/*.md
+            !**/node_modules/**
+
+      - name: Lint YAML
+        uses: ibiqlik/action-yamllint@v3
+        with:
+          file_or_dir: .
+          config_file: .yamllint.yml
+
+      # Activé automatiquement dès qu'un projet .NET apparaît dans services/
+      - name: Setup .NET
+        if: hashFiles('services/**/*.csproj') != ''
+        uses: actions/setup-dotnet@v4
+        with:
+          dotnet-version: "8.0.x"
+
+      - name: Lint .NET (dotnet format)
+        if: hashFiles('services/**/*.csproj') != ''
+        run: |
+          mapfile -t projects < <(find services -name '*.csproj' -print)
+          for proj in "${projects[@]}"; do
+            echo "→ format check: $proj"
+            dotnet format "$proj" --verify-no-changes --verbosity diagnostic
+          done
