@@ -7,6 +7,7 @@ Thumbs.db
 .vscode/
 *.user
 *.suo
+.cursor/
 
 # --- Secrets / env ---
 .env
