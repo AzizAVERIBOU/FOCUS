@@ -7,12 +7,13 @@ Thumbs.db
 .vscode/
 *.user
 *.suo
+.cursor/
 
 # --- Secrets / env ---
 .env
 .env.local
 .env.*.local
-!.env.example
+.env.example
 
 # --- .NET ---
 bin/
