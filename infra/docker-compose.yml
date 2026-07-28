@@ -2,7 +2,7 @@ services:
   postgres:
     image: postgres:17.5
     container_name: focus_postgres
-    restart: unless-stopped 
+    restart: unless-stopped
     environment:
         POSTGRES_USER: ${POSTGRES_USER}
         POSTGRES_PASSWORD: ${POSTGRES_PASSWORD}
@@ -15,12 +15,12 @@ services:
   redis:
     image: redis:7.4.2
     container_name: focus_redis
-    restart: unless-stopped 
+    restart: unless-stopped
     ports:
         - 6379:6379
     volumes:
         - focus_redis_data:/data
 
 volumes:
-  focus_pg_data: 
-  focus_redis_data: 
+  focus_pg_data:
+  focus_redis_data:
