@@ -21,6 +21,41 @@ services:
     volumes:
       - focus_redis_data:/data
 
+  minio-server:
+    image: minio/minio:latest
+    container_name: focus_minio_server
+    restart: unless-stopped
+    command: server /data --console-address ":9001"
+    ports:
+      - 9000:9000
+      - 9001:9001
+    volumes:
+      - focus_minio_data:/data
+    environment:
+      MINIO_ROOT_USER: ${MINIO_ROOT_USER}
+      MINIO_ROOT_PASSWORD: ${MINIO_ROOT_PASSWORD}
+
+  minio-init:
+    image: minio/mc:latest
+    restart: "no"
+    depends_on:
+      - minio-server
+    container_name: focus_minio_init
+    entrypoint: >
+      /bin/sh -c "
+      until mc alias set local http://minio-server:9000 $$MINIO_ROOT_USER $$MINIO_ROOT_PASSWORD; do
+        echo 'waiting for minio...';
+        sleep 2;
+      done;
+      echo 'minio is ready';
+      mc mb --ignore-existing local/focus;
+      echo 'bucket focus created';
+      "
+    environment:
+      MINIO_ROOT_USER: ${MINIO_ROOT_USER}
+      MINIO_ROOT_PASSWORD: ${MINIO_ROOT_PASSWORD}
+
 volumes:
   focus_pg_data:
   focus_redis_data:
+  focus_minio_data:
