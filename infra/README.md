@@ -20,7 +20,6 @@ docker compose -f infra/docker-compose.yml --env-file .env up -d
 | MinIO API     | `focus_minio_server` | 9000 | 9000 | Stockage objet (S3) |
 | MinIO Console | `focus_minio_server` | 9001 | 9001 | Interface web       |
 
-
 Vérifier que les services tournent :
 
 ```bash
