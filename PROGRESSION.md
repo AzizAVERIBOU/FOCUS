@@ -2,8 +2,9 @@
 
 ## Vue d’ensemble
 
-Infrastructure Docker en place. AuthService en cours
-(skeleton + health + package EF ; connexion sans secret Git).
+Infrastructure Docker en place. AuthService : skeleton, health, package EF,
+et connexion Postgres via User Secrets (sans secret dans Git).
+Prochain : DbContext.
 
 ## Infra
 
@@ -39,10 +40,10 @@ Infrastructure Docker en place. AuthService en cours
 
 ### Récit : Config connexion Postgres (sans secret dans Git)
 
-- **Statut :** en cours
+- **Statut :** fait
 - **Objectif :** configurer la connexion Postgre sans secrets dans git
-- **Fait :** chaine testee via launchSettings ; retiree de Git (GitGuardian)
-- **Reste :** User Secrets (local) ; Vault = plus tard
+- **Fait :** chaine retiree de launchSettings (GitGuardian) ; User Secrets init + set `ConnectionStrings:DefaultConnection` (base focus) ; `UserSecretsId` dans le csproj Api
+- **Reste :** brancher la chaine via DbContext (EF) ; Vault = plus tard
 
 ## Notes perso
 
