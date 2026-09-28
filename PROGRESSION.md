@@ -12,7 +12,6 @@
 - **Reste :** Vault Docker plus tard
 
 ## AuthService
-
 ### Récit : Skeleton Clean Architecture + tests
 - **Statut :** fait
 - **Objectif :** mettre en place la stucture de la clean architecture
@@ -35,7 +34,6 @@
 - **Fait :** chaîne testée via launchSettings; retirée de Git (GitGuardian)
 - **Reste :**  plutôt User Secrets (local) ; Vault = plus tard
 
-
 ## Notes perso
 ### Recit : fichier de progression 
 - **Statut :** en cours
@@ -43,7 +41,4 @@
 - **Fait :** fichier a la racine ou je documente chaque recit correctement 
 - **Reste :** documenter chaque recit avant et apres que ca soit fait 
 
-
 ## UserService / TeamService / … (quand ça existe)
-
-
