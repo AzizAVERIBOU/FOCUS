@@ -67,3 +67,6 @@ docker-data/
 *.temp
 coverage/
 .nyc_output/
+
+# --- PROGRESSION.md ---
+#PROGRESSION.md
