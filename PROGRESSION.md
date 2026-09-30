@@ -13,7 +13,7 @@ Prochain : DbContext.
 - **Statut :** Fait
 - **Objectif :** Mettre en place l'infrastructure necessaire pour lancer le stack correctement
 - **Fait :** des files dockers rajoutes avec docker compose pour orchestrer tout ca
-- **Reste :** Vault Docker plus tard
+- **Reste :** Vault Docker plus tard ; images MinIO : basculer vers quay.io ou rebuild (retirees de Docker Hub)
 
 ## AuthService
 
@@ -43,7 +43,28 @@ Prochain : DbContext.
 - **Statut :** fait
 - **Objectif :** configurer la connexion Postgre sans secrets dans git
 - **Fait :** chaine retiree de launchSettings (GitGuardian) ; User Secrets init + set `ConnectionStrings:DefaultConnection` (base focus) ; `UserSecretsId` dans le csproj Api
-- **Reste :** brancher la chaine via DbContext (EF) ; Vault = plus tard
+- **Reste :** Vault = plus tard
+
+### Récit : Mise en place du DbContext
+
+- **Statut :** fait
+- **Objectif :** creer AuthDbContext et le brancher a Postgres via DI
+- **Fait :** `AuthDbContext` dans Infrastructure/Persistence ; `AddDbContext` + `UseNpgsql` + `GetConnectionString` dans Program.cs (Scoped)
+- **Reste :** -
+
+### Récit : Entite User
+
+- **Statut :** fait
+- **Objectif :** modeliser l'identite auth minimale sans profil (pas d'adresse)
+- **Fait :** `User` dans Domain/Entities (Id Guid, Email, PasswordHash, CreatedAt) ; `DbSet<User> Users` dans AuthDbContext
+- **Reste :** -
+
+### Récit : Premiere migration EF
+
+- **Statut :** fait
+- **Objectif :** versionner le schema Postgres a partir du modele EF
+- **Fait :** `dotnet-ef` + package Design ; `migrations add InitialCreate` ; `database update` → table `Users` + `__EFMigrationsHistory`
+- **Reste :** prochaines migrations quand le modele evolue
 
 ## Notes perso
 
@@ -55,3 +76,11 @@ Prochain : DbContext.
 - **Reste :** documenter chaque recit avant et apres que ca soit fait
 
 ## UserService / TeamService / … (quand ça existe)
+
+## Glossaire entretien
+
+- **DI :** le framework fournit les dependances (ex. AuthDbContext) au lieu de `new`
+- **Scoped :** une instance par requete HTTP (defaut AddDbContext)
+- **Singleton :** une instance pour toute l'app — a eviter pour DbContext
+- **Migration :** script versionne qui fait evoluer le schema DB selon le modele EF
+- **PasswordHash :** on stocke un hash, jamais le mot de passe en clair
