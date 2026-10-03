@@ -2,9 +2,10 @@
 
 ## Vue d’ensemble
 
-Infrastructure Docker en place. AuthService : skeleton, health, package EF,
-et connexion Postgres via User Secrets (sans secret dans Git).
-Prochain : DbContext.
+Infrastructure Docker : Postgres/Redis OK ; MinIO bloque (images retirees de Docker Hub).
+AuthService : skeleton, health, EF, User Secrets, AuthDbContext, entite User,
+migration InitialCreate appliquee (table Users).
+Prochain : register + hash mot de passe (apres correctifs doc/infra).
 
 ## Infra
 
