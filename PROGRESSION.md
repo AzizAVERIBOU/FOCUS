@@ -14,7 +14,14 @@ Prochain : register + hash mot de passe (apres correctifs doc/infra).
 - **Statut :** Fait
 - **Objectif :** Mettre en place l'infrastructure necessaire pour lancer le stack correctement
 - **Fait :** des files dockers rajoutes avec docker compose pour orchestrer tout ca
-- **Reste :** Vault Docker plus tard ; images MinIO : basculer vers quay.io ou rebuild (retirees de Docker Hub)
+- **Reste :** Vault Docker plus tard ; workaround postgres seul ; Quay 401 anonyme ; S3 local = carte plus tard
+
+### Recit : S3 local
+
+- **Statut :** a faire
+- **Objectif :** stockage objet S3-compatible local (remplacer MinIO community)
+- **Fait :** constat Hub retire + Quay 401 anonyme ; Auth n'en a pas besoin aujourd'hui
+- **Reste :** evaluer Garage / LocalStack / autre ; documenter ports ; fermer ticket MinIO
 
 ## AuthService
 
