@@ -4,8 +4,8 @@
 
 Infrastructure Docker : Postgres/Redis OK ; MinIO bloque (Hub / Quay).
 Une seule DB `focus` avec schemas `auth` et `users`.
-AuthService : skeleton, health, EF, User Secrets, AuthDbContext, entite compte, migrations.
-UserService : skeleton, health, EF, User Secrets, UserDbContext, entite profil (`AuthUserId`).
+AuthService + UserService : skeleton, health, EF, User Secrets, DbContext, migrations.
+Contrat erreurs API : ProblemDetails active sur les deux Apis (.NET).
 Prochain : register Auth + hash mot de passe.
 
 ## Infra
@@ -126,6 +126,15 @@ Prochain : register Auth + hash mot de passe.
 - **Fait :** `UserDbContext` + DI ; `HasDefaultSchema("users")` ; `HasKey(AuthUserId)` ; migration InitialCreate → `users.Users`
 - **Reste :** -
 
+## Contrat API (transverse)
+
+### Recit : Format erreurs ProblemDetails
+
+- **Statut :** fait
+- **Objectif :** meme forme JSON d'erreur sur les Apis .NET (status HTTP + body standard)
+- **Fait :** `AddProblemDetails()` dans AuthService.Api et UserService.Api ; demo Auth `ErrorController` + `return Problem(...)` (404) ; verifie au navigateur
+- **Reste :** handler d'exceptions global plus tard ; retirer ou isoler la demo ErrorController ; recopier demo User si besoin
+
 ## Notes perso
 
 ### Recit : fichier de progression
@@ -146,3 +155,4 @@ Prochain : register Auth + hash mot de passe.
 - **PasswordHash :** on stocke un hash, jamais le mot de passe en clair
 - **Schema Postgres :** isolation logique multi-services sur une seule instance DB
 - **AuthUserId :** cle de lien profil UserService ↔ compte AuthService
+- **ProblemDetails :** contrat d'erreur HTTP standard (RFC 7807) fourni par ASP.NET
