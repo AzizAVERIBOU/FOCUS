@@ -8,9 +8,11 @@ Monorepo FOCUS — application mobile (Kotlin Multiplatform) et microservices .N
 FOCUS-Project/
 ├── apps/
 │   └── mobile/          # Application KMP (Android / iOS)
-├── services/            # Microservices .NET
+├── services/            # Microservices .NET (Auth, User, …)
+├── Tests/               # Tests unitaires par service
 ├── infra/               # Docker Compose, configs d'infra
-├── .env.example         # Variables d'environnement (modèle)
+├── PROGRESSION.md       # Suivi des recits / avancement
+├── .env.example         # Variables d'environnement (modele)
 └── README.md
 ```
 
@@ -18,6 +20,7 @@ FOCUS-Project/
 
 - Git
 - Docker (pour l'infra locale)
+- .NET 9 SDK (pour les services)
 
 ## Démarrage rapide
 
@@ -27,12 +30,21 @@ FOCUS-Project/
    cp .env.example .env
    ```
 
-2. Lancer l'infra locale :
+2. Lancer l'infra locale.
+
+   Pour Auth / User (Postgres suffit) :
 
    ```bash
-   docker compose -f infra/docker-compose.yml up -d
+   docker compose -f infra/docker-compose.yml --env-file .env up -d postgres
    ```
+
+   Le stack complet (`up -d`) inclut MinIO : images actuellement indisponibles
+   sur Docker Hub — details dans `infra/README.md`.
+
+Details ports, schemas Postgres (`auth` / `users`) : voir `infra/README.md`.
 
 ## CI
 
-Chaque push et chaque pull request déclenchent le workflow **CI** (lint Markdown / YAML, puis .NET quand des projets apparaîtront). Les branches `main`, `develop` et `staging` exigent un CI vert avant merge.
+Chaque push et chaque pull request declenchent le workflow **CI**
+(lint Markdown / YAML, `dotnet format` sur les projets .NET).
+Les branches `main`, `develop` et `staging` exigent un CI vert avant merge.
