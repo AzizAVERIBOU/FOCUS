@@ -156,3 +156,6 @@ Prochain : register Auth + hash mot de passe.
 - **Schema Postgres :** isolation logique multi-services sur une seule instance DB
 - **AuthUserId :** cle de lien profil UserService ↔ compte AuthService
 - **ProblemDetails :** contrat d'erreur HTTP standard (RFC 7807) fourni par ASP.NET
+- **Swagger / OpenAPI :** documente et permet de tester les endpoints (catalogue de l'API)
+- **nginx :** reverse proxy classique (souvent Linux/Docker) ; une entree devant les services
+- **YARP :** reverse proxy / gateway Microsoft en .NET ; meme role qu'nginx, dans l'ecosysteme C#
