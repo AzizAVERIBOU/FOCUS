@@ -29,7 +29,7 @@ Prochain : register Auth + hash mot de passe.
 - **Statut :** fait
 - **Objectif :** isoler Auth et User sans multiplier les instances Postgres (cout deploy)
 - **Fait :** schema `users` (UserService) ; migration Auth `MoveToAuthSchema` → `auth.Users` ; meme Database=`focus`
-- **Reste :** documenter schemas dans infra/README si pas deja fait
+- **Reste :** -
 
 ## AuthService
 
