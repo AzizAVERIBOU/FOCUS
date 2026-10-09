@@ -29,7 +29,7 @@ Prochain : register Auth + hash mot de passe.
 - **Statut :** fait
 - **Objectif :** isoler Auth et User sans multiplier les instances Postgres (cout deploy)
 - **Fait :** schema `users` (UserService) ; migration Auth `MoveToAuthSchema` → `auth.Users` ; meme Database=`focus`
-- **Reste :** documenter schemas dans infra/README si pas deja fait
+- **Reste :** -
 
 ## AuthService
 
@@ -88,7 +88,7 @@ Prochain : register Auth + hash mot de passe.
 
 - **Statut :** fait
 - **Objectif :** reproduire la structure Auth pour valider la comprehension
-- **Fait :** Api / Application / Domain / Infrastructure + `UserService.sln` ; tests dans `Tests/UserService.UnitTests`
+- **Fait :** Api / Application / Domain / Infrastructure + `UserService.sln` ; tests dans `Tests/UserService.UnitTests` ; retrait template WeatherForecast
 - **Reste :** -
 
 ### Recit : endpoint sante
@@ -156,3 +156,6 @@ Prochain : register Auth + hash mot de passe.
 - **Schema Postgres :** isolation logique multi-services sur une seule instance DB
 - **AuthUserId :** cle de lien profil UserService ↔ compte AuthService
 - **ProblemDetails :** contrat d'erreur HTTP standard (RFC 7807) fourni par ASP.NET
+- **Swagger / OpenAPI :** documente et permet de tester les endpoints (catalogue de l'API)
+- **nginx :** reverse proxy classique (souvent Linux/Docker) ; une entree devant les services
+- **YARP :** reverse proxy / gateway Microsoft en .NET ; meme role qu'nginx, dans l'ecosysteme C#

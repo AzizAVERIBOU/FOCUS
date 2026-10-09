@@ -19,6 +19,16 @@ AuthService n'a besoin que de Postgres :
 docker compose -f infra/docker-compose.yml --env-file .env up -d postgres
 ```
 
+## Base de donnees / schemas
+
+Une seule instance Postgres, database `focus` (variables `.env`) :
+
+- schema `auth` → tables AuthService (ex. `auth.Users`)
+- schema `users` → tables UserService (ex. `users.Users`)
+
+Chaque service a son DbContext et ses migrations EF.
+Pas de jointures SQL cross-schema entre services (isolation logique, un seul cout d'instance).
+
 ## Ports
 
 | Service       | Conteneur            | Port hôte | Port conteneur | Usage                   |
