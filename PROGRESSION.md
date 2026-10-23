@@ -88,7 +88,7 @@ Prochain : register Auth + hash mot de passe.
 
 - **Statut :** fait
 - **Objectif :** reproduire la structure Auth pour valider la comprehension
-- **Fait :** Api / Application / Domain / Infrastructure + `UserService.sln` ; tests dans `Tests/UserService.UnitTests` ; retrait template WeatherForecast
+- **Fait :** Api / Application / Domain / Infrastructure + `UserService.sln` ; tests dans `Tests/UserService.UnitTests` ; retrait template WeatherForecast et placeholders Class1
 - **Reste :** -
 
 ### Recit : endpoint sante
